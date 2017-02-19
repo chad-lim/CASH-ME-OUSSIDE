@@ -40,6 +40,8 @@ class lineItem(object):
 # End Class
 
 # Begin readFile
+
+# Assumes the file path on my own personal computer and uses a text file named "hackfsu.txt"
 def readFile():
 	import os
 	tf = open(os.path.expanduser("~/Desktop/AllCode/Python/hackfsu.txt"))
@@ -57,6 +59,7 @@ def readFile():
 
 	return budgetList
 
+# Updates the budget upon altering the percentages for fund distribution for each line item
 def updateFile(budgetList):
 	tf = open("hackfsu.txt", 'w')
 	for i in xrange(0, len(budgetList)):
@@ -66,7 +69,7 @@ def updateFile(budgetList):
 		tf.write(var)
 	return budgetList
 
-# get the current sum of values and redistrubute
+# Get the current sum of values and redistrubute
 def alterBudget(budgetList):
 	for i in xrange(0, len(budgetList)):
 		newPercentage = input("Please enter the new percentage for line item #"+str(i+1)+", "+str(budgetList[i].getName())+":\n")
@@ -75,6 +78,7 @@ def alterBudget(budgetList):
 	updateFile(budgetList)
 	return budgetList
 
+# Alters the literal cash values when the budget gets revamped
 def alterCash(cashList, budgetList):
 	totalCash = 0
 	for i in xrange(0, len(cashList)):
@@ -83,16 +87,20 @@ def alterCash(cashList, budgetList):
 		cashList[i] = (budgetList[i].getPercentage()/100.0)*(totalCash*1.0)
 	return cashList
 
+# Conducts the math for deciding how much money should go into what for each line item
 def cashMath(budgetList,cashList,cashInput):
 	for i in xrange(0, len(cashList)):
 		cashList[i] = (cashList[i]*1.0)+cashInput*(budgetList[i].getPercentage()/100.0)
 	return cashList
 
+# Prints the current funds for each line item all at once
 def printCurrentMoneyz(cashList, budgetList):
 	print("Current funds:")
 	for i in xrange(0, len(cashList)):
 		print str(budgetList[i].getName()) +": $"+ str(cashList[i])
 
+# Subtracts funds from a particular line item
+# Prevents you from subtracting money that doesn't exist
 def subtractCash(cashList, budgetList):
 	print("Please select the line item you would like to subtract funds from: ")
 	for i in xrange(0, len(cashList)):
@@ -106,6 +114,8 @@ def subtractCash(cashList, budgetList):
 		print("Subtracting results in a negative value. Cannot execute.")
 	return cashList
 
+# Conducts the initialization process, getting the initial information
+# and writing it to a file to be read later for use
 def initializeAccount():
 	tf = open("hackfsu.txt", 'w')
 	print("Welcome to the \"Cash me Ousside\" Account Manager!")
@@ -130,6 +140,8 @@ def initializeAccount():
 				b = False
 			else:
 				print("Try again!")
+
+# main method that runs everything
 def main():
 
 	initializeAccount()
@@ -140,6 +152,7 @@ def main():
 
 	while validInput != False:
 
+		# menu that prints repeatedly until the user closes the program
 		print("Please select an option from the menu:")
 		userInput = input("1. Add funds\n2. Display current funds per line item\n3. Alter budgeting\n4. Reduce funds to a line item\n5. Exit program\n")
 		if userInput == 1:
