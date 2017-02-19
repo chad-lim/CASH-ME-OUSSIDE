@@ -1,4 +1,4 @@
-# CASH-ME-OUSSIDE
+# Cash-Me-Ousside
 Finance management application developed during HackFSU '17 
 
 This application is designed with students and student organizations in mind.
