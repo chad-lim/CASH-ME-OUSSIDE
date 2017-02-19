@@ -71,11 +71,20 @@ def updateFile(budgetList):
 
 # Get the current sum of values and redistrubute
 def alterBudget(budgetList):
+	total = 0;
 	for i in xrange(0, len(budgetList)):
-		newPercentage = input("Please enter the new percentage for line item #"+str(i+1)+", "+str(budgetList[i].getName())+":\n")
-		budgetList[i].setPercentage(newPercentage)
+		b = True
+		while b == True:
+			newPercentage = input("Please enter the new percentage for line item #"+str(i+1)+", "+str(budgetList[i].getName())+":\n")
+			total += newPercentage
+			if total <= 100:
+				budgetList[i].setPercentage(newPercentage)
+				updateFile(budgetList)
+				b = False
+			else:
+				print("Total exceeds 100%")
+				total -= newPercentage
 
-	updateFile(budgetList)
 	return budgetList
 
 # Alters the literal cash values when the budget gets revamped
@@ -180,3 +189,4 @@ def main():
 			print("Invalid input")
 
 if __name__ == "__main__": main()
+
