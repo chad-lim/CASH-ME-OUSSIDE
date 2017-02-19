@@ -1,5 +1,6 @@
 # Cash-Me-Ousside
-Finance management application developed during HackFSU '17 
+Finance management application developed during HackFSU '17 by Chad Lim
+Idea dreamt up by Chad Lim and Kareem Hunte
 
 This application is designed with students and student organizations in mind.
 At the moment this application only runs through terminal and simply organizes budgets by name
